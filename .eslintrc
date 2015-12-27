@@ -1,0 +1,9 @@
+{
+  "extends": "eslint-config-airbnb",
+  "rules": {
+    "indent": [2, "tab"],
+    "id-length": [1, { "min": 1 }],
+    "strict": [0, "global"],
+    "comma-dangle": 0
+  }
+}
