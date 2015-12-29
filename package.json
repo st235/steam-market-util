@@ -1,6 +1,6 @@
 {
   "name": "steam-market-util",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Utility designed to take the prices from the trading platform Steam.",
   "author": {
     "name": "Alexander Dadukin",
@@ -12,10 +12,11 @@
 	"bugs": {
 		"url": "https://github.com/sasd97/steam-market-util/issues"
 	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/sasd97/steam-market-util.git"
-	},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sasd97/steam-market-util.git"
+  },
+  "license": "Apache-2.0", 
   "dependencies": {
     "es6-promise": "^3.0.2",
     "request": "^2.65.0"

@@ -8,27 +8,33 @@ const AppIds = SteamConfig.appid;
 
 class SteamMarket {
 	getCSGOItemPrice(marketHash, currency) {
+		const curr = currency ? currency : SteamConfig.currencies.USD;
+
 		return new Promise((resolve, reject) => {
-			this.getPrice(AppIds.csgo, marketHash, currency, (err, result) => {
-				if (err || !result) reject(err || 'Item has not price');
+			this.getPrice(AppIds.csgo, marketHash, curr, (err, result) => {
+				if (err || !result || isNaN(result)) reject(err || 'Item has not price');
 				resolve(result);
 			});
 		});
 	}
 
 	getDota2ItemPrice(marketHash, currency) {
+		const curr = currency ? currency : SteamConfig.currencies.USD;
+
 		return new Promise((resolve, reject) => {
-			this.getPrice(AppIds.dota2, marketHash, currency, (err, result) => {
-				if (err || !result) reject(err || 'Item has not price');
+			this.getPrice(AppIds.dota2, marketHash, curr, (err, result) => {
+				if (err || !result || isNaN(result)) reject(err || 'Item has not price');
 				resolve(result);
 			});
 		});
 	}
 
 	getCustomItemPrice(appID, marketHash, currency) {
+		const curr = currency ? currency : SteamConfig.currencies.USD;
+
 		return new Promise((resolve, reject) => {
-			this.getPrice(appID, marketHash, currency, (err, result) => {
-				if (err || !result) reject(err || 'Item has not price');
+			this.getPrice(appID, marketHash, curr, (err, result) => {
+				if (err || !result || isNaN(result)) reject(err || 'Item has not price');
 				resolve(result);
 			});
 		});
@@ -47,13 +53,18 @@ class SteamMarket {
 		}, (err, response, body) => {
 			if (!err && response.statusCode === 200) {
 				body.marketHash = marketHash;
-				callback(null, Math.floor(parseFloat(body.lowest_price)));
+				body.median_price = this.makeValid(body.median_price);
+				callback(null, parseFloat(body.median_price).toFixed(2));
 			} else if (!err && response.statusCode !== 200) {
 				callback(new Error('Unsuccessful response'));
 			} else {
 				callback(err);
 			}
 		});
+	}
+
+	makeValid(price) {
+		return price ? price.replace('p\u0443\u0431.', '').replace(',', '.').replace(/[^0-9\.\,]+/g, '').trim() : '';
 	}
 }
 
