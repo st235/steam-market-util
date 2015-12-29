@@ -64,7 +64,7 @@ class SteamMarket {
 	}
 
 	makeValid(price) {
-		return price ? price.replace('p\u0443\u0431.', '').replace(',', '.').replace(/[^0-9\.\,]+/g, '').trim() : '';
+		return price ? price.replace('p\u0443\u0431.', '').replace(',', '.').replace(/[^0-9\.]+/g, '').trim() : '';
 	}
 }
 
