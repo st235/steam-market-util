@@ -4,14 +4,14 @@ const SteamConfig = require('../config/steam');
 
 module.exports = {
 
-	getPrice(appID, marketHash, currency, callback) {
+	getPrice(appId, marketHash, currency, callback) {
 		request({
 			uri: '/market/priceoverview/',
 			baseUrl: SteamConfig.baseUrl,
 			json: true,
 			qs: {
 				currency,
-				appid: appID,
+				appid: appId,
 				market_hash_name: marketHash
 			}
 		}, (err, response, body) => {

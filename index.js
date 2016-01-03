@@ -29,15 +29,26 @@ class SteamMarket {
 		});
 	}
 
-	getCustomItemPrice(appID, marketHash, currency) {
+	getCustomItemPrice(appId, marketHash, currency) {
 		const curr = currency ? currency : SteamConfig.currencies.USD;
 
 		return new Promise((resolve, reject) => {
-			GetPricesUtil.getPrice(appID, marketHash, curr, (err, result) => {
+			GetPricesUtil.getPrice(appId, marketHash, curr, (err, result) => {
 				if (err || !result || isNaN(result)) reject(err || 'Item has not price');
 				resolve(result);
 			});
 		});
+	}
+
+	getCustomItemsPrices(appId, marketHashes, currency) {
+		const curr = currency ? currency : SteamConfig.currencies.USD;
+
+		const pricesPromises = [];
+		marketHashes.forEach(marketHash => {
+			pricesPromises.push(this.getCustomItemPrice(appId, marketHash, curr));
+		});
+
+		return Promise.all(pricesPromises);
 	}
 }
 
