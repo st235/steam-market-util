@@ -8,10 +8,8 @@ const AppIds = SteamConfig.appid;
 
 class SteamMarket {
 	getCSGOItemPrice(marketHash, isMedian, currency) {
-		const curr = currency ? currency : SteamConfig.currencies.USD;
-
 		return new Promise((resolve, reject) => {
-			GetPricesUtil.getPrice(AppIds.csgo, marketHash, curr, isMedian, (err, result) => {
+			GetPricesUtil.getPrice(AppIds.csgo, marketHash, currency, isMedian, (err, result) => {
 				if (err || !result || isNaN(result)) reject(err || 'Item has not price');
 				resolve(result);
 			});
@@ -19,10 +17,8 @@ class SteamMarket {
 	}
 
 	getDota2ItemPrice(marketHash, isMedian, currency) {
-		const curr = currency ? currency : SteamConfig.currencies.USD;
-
 		return new Promise((resolve, reject) => {
-			GetPricesUtil.getPrice(AppIds.dota2, marketHash, curr, isMedian, (err, result) => {
+			GetPricesUtil.getPrice(AppIds.dota2, marketHash, currency, isMedian, (err, result) => {
 				if (err || !result || isNaN(result)) reject(err || 'Item has not price');
 				resolve(result);
 			});
@@ -30,10 +26,8 @@ class SteamMarket {
 	}
 
 	getCustomItemPrice(appId, marketHash, isMedian, currency) {
-		const curr = currency ? currency : SteamConfig.currencies.USD;
-
 		return new Promise((resolve, reject) => {
-			GetPricesUtil.getPrice(appId, marketHash, curr, isMedian, (err, result) => {
+			GetPricesUtil.getPrice(appId, marketHash, currency, isMedian, (err, result) => {
 				if (err || !result || isNaN(result)) reject(err || 'Item has not price');
 				resolve(result);
 			});
@@ -41,11 +35,9 @@ class SteamMarket {
 	}
 
 	getCustomItemsPrices(appId, marketHashes, isMedian, currency) {
-		const curr = currency ? currency : SteamConfig.currencies.USD;
-
 		const pricesPromises = [];
 		marketHashes.forEach(marketHash => {
-			pricesPromises.push(this.getCustomItemPrice(appId, marketHash, isMedian, curr));
+			pricesPromises.push(this.getCustomItemPrice(appId, marketHash, isMedian, currency));
 		});
 
 		return Promise.all(pricesPromises);

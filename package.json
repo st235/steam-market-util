@@ -1,6 +1,6 @@
 {
   "name": "steam-market-util",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Utility designed to take the prices from the trading platform Steam.",
   "author": {
     "name": "Alexander Dadukin",

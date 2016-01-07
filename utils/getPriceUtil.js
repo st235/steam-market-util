@@ -5,6 +5,7 @@ const SteamConfig = require('../config/steam');
 module.exports = {
 
 	getPrice(appId, marketHash, currency, median, callback) {
+		const curr = currency ? currency : SteamConfig.currencies.USD;
 		const isMedian = (median !== undefined) ? median : true;
 
 		request({
@@ -12,7 +13,7 @@ module.exports = {
 			baseUrl: SteamConfig.baseUrl,
 			json: true,
 			qs: {
-				currency,
+				currency: curr,
 				appid: appId,
 				market_hash_name: marketHash
 			}
