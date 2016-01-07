@@ -4,7 +4,9 @@ const SteamConfig = require('../config/steam');
 
 module.exports = {
 
-	getPrice(appId, marketHash, currency, callback) {
+	getPrice(appId, marketHash, currency, median, callback) {
+		const isMedian = (median !== undefined) ? median : true;
+
 		request({
 			uri: '/market/priceoverview/',
 			baseUrl: SteamConfig.baseUrl,
@@ -17,8 +19,8 @@ module.exports = {
 		}, (err, response, body) => {
 			if (!err && response.statusCode === 200) {
 				body.marketHash = marketHash;
-				body.median_price = this.makeValid(body.median_price);
-				callback(null, parseFloat(body.median_price).toFixed(2));
+				body.price = isMedian ? this.makeValid(body.median_price) : this.makeValid(body.lowest_price);
+				callback(null, parseFloat(body.price).toFixed(2));
 			} else if (!err && response.statusCode !== 200) {
 				callback(new Error('Unsuccessful response'));
 			} else {

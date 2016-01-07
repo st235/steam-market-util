@@ -7,45 +7,45 @@ const SteamConfig = require('./config/steam');
 const AppIds = SteamConfig.appid;
 
 class SteamMarket {
-	getCSGOItemPrice(marketHash, currency) {
+	getCSGOItemPrice(marketHash, isMedian, currency) {
 		const curr = currency ? currency : SteamConfig.currencies.USD;
 
 		return new Promise((resolve, reject) => {
-			GetPricesUtil.getPrice(AppIds.csgo, marketHash, curr, (err, result) => {
+			GetPricesUtil.getPrice(AppIds.csgo, marketHash, curr, isMedian, (err, result) => {
 				if (err || !result || isNaN(result)) reject(err || 'Item has not price');
 				resolve(result);
 			});
 		});
 	}
 
-	getDota2ItemPrice(marketHash, currency) {
+	getDota2ItemPrice(marketHash, isMedian, currency) {
 		const curr = currency ? currency : SteamConfig.currencies.USD;
 
 		return new Promise((resolve, reject) => {
-			GetPricesUtil.getPrice(AppIds.dota2, marketHash, curr, (err, result) => {
+			GetPricesUtil.getPrice(AppIds.dota2, marketHash, curr, isMedian, (err, result) => {
 				if (err || !result || isNaN(result)) reject(err || 'Item has not price');
 				resolve(result);
 			});
 		});
 	}
 
-	getCustomItemPrice(appId, marketHash, currency) {
+	getCustomItemPrice(appId, marketHash, isMedian, currency) {
 		const curr = currency ? currency : SteamConfig.currencies.USD;
 
 		return new Promise((resolve, reject) => {
-			GetPricesUtil.getPrice(appId, marketHash, curr, (err, result) => {
+			GetPricesUtil.getPrice(appId, marketHash, curr, isMedian, (err, result) => {
 				if (err || !result || isNaN(result)) reject(err || 'Item has not price');
 				resolve(result);
 			});
 		});
 	}
 
-	getCustomItemsPrices(appId, marketHashes, currency) {
+	getCustomItemsPrices(appId, marketHashes, isMedian, currency) {
 		const curr = currency ? currency : SteamConfig.currencies.USD;
 
 		const pricesPromises = [];
 		marketHashes.forEach(marketHash => {
-			pricesPromises.push(this.getCustomItemPrice(appId, marketHash, curr));
+			pricesPromises.push(this.getCustomItemPrice(appId, marketHash, isMedian, curr));
 		});
 
 		return Promise.all(pricesPromises);
