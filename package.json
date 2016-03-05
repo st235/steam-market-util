@@ -1,6 +1,6 @@
 {
   "name": "steam-market-util",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Utility designed to take the prices from the trading platform Steam.",
   "author": {
     "name": "Alexander Dadukin",
@@ -18,16 +18,15 @@
   },
   "license": "Apache-2.0", 
   "dependencies": {
-    "es6-promise": "^3.0.2",
     "request": "^2.67.0"
   },
   "devDependencies": {
-    "eslint": "^1.10.3",
-    "babel-eslint": "^5.0.0-beta6",
-    "eslint-plugin-react": "^3.14.0",
-    "eslint-config-airbnb": "^3.0.2"
+    "eslint": "^2.3.0",
+    "babel-eslint": "^5.0.0",
+    "eslint-plugin-react": "^4.1.0",
+    "eslint-config-airbnb": "^6.0.2"
   },
   "engines": {
-    "node": ">=4.1.1"
+    "node": ">=5.1.0"
   }
 }

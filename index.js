@@ -1,6 +1,5 @@
 'use strict';
 
-const Promise = require('es6-promise').Promise;
 const GetPricesUtil = require('./utils/getPriceUtil');
 
 const SteamConfig = require('./config/steam');
@@ -44,4 +43,4 @@ class SteamMarket {
 	}
 }
 
-module.exports = SteamMarket;
+module.exports = new SteamMarket();
