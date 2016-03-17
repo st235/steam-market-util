@@ -1,4 +1,4 @@
-# steam-market-util
+## steam-market-util
 [![npm version](https://img.shields.io/npm/v/steam-market-util.svg)](https://npmjs.com/package/steam-market-util)
 [![npm downloads](https://img.shields.io/npm/dm/steam-market-util.svg)](https://npmjs.com/package/steam-market-util)
 [![dependencies](https://david-dm.org/sasd97/steam-market-util.svg)](https://david-dm.org/sasd97/steam-market-util)
@@ -9,8 +9,9 @@ Utility designed to take the prices from the trading platform Steam.
 
 Install it from [npm](https://www.npmjs.com/package/steam-market-util) or check out the [wiki](https://github.com/sasd97/steam-market-util/wiki) for documentation.
 
-##Example
-```'use strict';
+####Example
+```javascript
+'use strict';
 const SteamMarket = require('steam-market-uti');
 const steamMarket = new SteamMarket();
 steamMarket.getCSGOItemPrice('Tec-9 | Army Mesh (Well-Worn)')
@@ -19,7 +20,8 @@ steamMarket.getCSGOItemPrice('Tec-9 | Army Mesh (Well-Worn)')
 })
 .catch(error => {
 //	Handle error
-});```
+});
+```
 
 
 # Support
