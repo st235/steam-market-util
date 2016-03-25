@@ -12,7 +12,7 @@ Install it from [npm](https://www.npmjs.com/package/steam-market-util) or check 
 ####Example
 ```javascript
 'use strict';
-const steamMarket = require('steam-market-uti');
+const steamMarket = require('steam-market-util');
 steamMarket.getCSGOItemPrice('Tec-9 | Army Mesh (Well-Worn)')
 .then(result => {
 //	Handle result
