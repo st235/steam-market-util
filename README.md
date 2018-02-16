@@ -9,7 +9,7 @@ Utility designed to take the prices from the trading platform Steam.
 
 Install it from [npm](https://www.npmjs.com/package/steam-market-util) or check out the [wiki](https://github.com/sasd97/steam-market-util/wiki) for documentation.
 
-####Example
+### Example
 ```javascript
 'use strict';
 const steamMarket = require('steam-market-util');
